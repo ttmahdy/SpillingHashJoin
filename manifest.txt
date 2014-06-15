@@ -1,0 +1,2 @@
+Premain-class: HashToDisk.InstrumentationAgent
+Agent-class: HashToDisk.InstrumentationAgent
