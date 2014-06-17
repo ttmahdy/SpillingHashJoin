@@ -1,4 +1,4 @@
-package HashToDisk;
+package spillingHashJoin;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -7,6 +7,10 @@ import java.util.Date;
 // Define the row that will be stored in the hash table
 public class orderkeyRow implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
 	@Override

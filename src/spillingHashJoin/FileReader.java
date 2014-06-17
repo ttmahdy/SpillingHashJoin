@@ -1,4 +1,4 @@
-package HashToDisk;
+package spillingHashJoin;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +14,7 @@ public class FileReader
 	LineIterator it;
 	List<String> rows = new ArrayList<String>();
 	int batchSize = 10000;
+	int totalRows = 0;
 	
 	public FileReader(String fileName)
 	{
@@ -46,10 +47,18 @@ public class FileReader
 	public List<String> GetNextBatch()
 	{
 		int rowNum = 0;
+		String outLine;
 		rows.clear();
 		do {
-			rows.add(it.nextLine());
+			outLine = it.nextLine();
+			rows.add(outLine);
 			rowNum++;
+			totalRows++;
+			if (totalRows > 6860000)
+			{
+				//System.out.println(totalRows);
+				//System.out.println(outLine.length());
+			}
 		} while (it.hasNext() && rowNum < batchSize);
 		
 		return rows;

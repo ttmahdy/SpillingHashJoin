@@ -1,12 +1,12 @@
-package HashToDisk;
+package spillingHashJoin;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import com.google.common.base.Splitter;
 
 public class SplitBenchmark {
+	@SuppressWarnings("unused")
 	public static void Run(int loopCount)
 	{
 		String row = "5999968|12896|F|354575.46|1992-12-24|3-MEDIUM|Clerk#000000736|0| cajole blithely ag|";
@@ -14,18 +14,26 @@ public class SplitBenchmark {
 		String ok; 
 		StringTokenizer st;
 		String[] columns;
-		List<String> sl = new ArrayList<String>();
+		List<String> sl1 = new ArrayList<String>();
+		List<String> sl2 = new ArrayList<String>();
+		List<String> sl3 = new ArrayList<String>();
 		
 		long startSplitter = System.nanoTime(); 
-		
+		/*
 		for (int i=0;i < loopCount ; i++)
 		{
 			is = Splitter.on('|').split(row);
-/*			while (is.iterator().hasNext())
+			while (is.iterator().hasNext())
 			{
-				sl.add(is.iterator().next());
+				sl1.add(is.iterator().next());
 			}
-*/			
+			
+		}
+		*/
+		
+		for (String s : sl1)
+		{
+			System.out.println(s);
 		}
 		
 		double elapsedSplitter = (System.nanoTime() - startSplitter) * 1.0e-6;
@@ -36,10 +44,14 @@ public class SplitBenchmark {
 			st = new StringTokenizer(row,"|");
 			while (st.hasMoreTokens())
 			{
-				sl.add(st.nextToken());
+				sl2.add(st.nextToken());
 			}
-			sl.clear();
-		}	
+		}
+		
+		for (String s : sl2)
+		{
+			System.out.println(s);
+		}
 		
 		double elapsedTokeniezer = (System.nanoTime() - startTokenizer) * 1.0e-6;
 		System.out.println("StringTokenizer " + elapsedTokeniezer + " msec " );

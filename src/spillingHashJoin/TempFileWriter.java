@@ -1,13 +1,12 @@
-package HashToDisk;
+package spillingHashJoin;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
-import java.nio.file.*;
+import java.nio.file.Path;
 
-public class SpillFileHandler {
+public class TempFileWriter {
 
 	public String getFileName() {
 		return fileName;
@@ -17,13 +16,13 @@ public class SpillFileHandler {
 		return filePath;
 	}
 
-	public SpillFileHandler(String fileName) throws IOException
+	public TempFileWriter(String fileName, boolean deleteIfExists) throws IOException
 	{
 		this.fileName = fileName;
 		fileToWriteTo = new File(fileName);
 		filePath = fileToWriteTo.toPath();
 		
-		if (fileToWriteTo.exists())
+		if (fileToWriteTo.exists() && deleteIfExists)
 		{
 			fileToWriteTo.delete();
 		}
