@@ -1,25 +1,7 @@
-<<<<<<< HEAD
-Mapreduce TPC-H Generator
-=========================
-
-This simplifies creating tpc-h data-sets on large scales on a hadoop cluster.
-
-To get set up, you need to run
-
-	$ make 
-
-this will download the TPC-h dbgen program, compile it and use maven to build the MR app wrapped around it.
-
-To generate the data-sets, you need to run (say, for scale = 200, parallelism = 100)
-
-	$ hadoop  jar target/tpch-gen-1.0-SNAPSHOT.jar   -d /user/hive/external/200/ -p 100 -s 200 
-
-This uses the existing parallelism in the dbgen program without modification and uses it to run the command on multiple machines.
-
-The command generates multiple files for each map task, resulting in each table having its own subdirectory.
-
-Assumptions made are that all machines in the cluster are OS/arch/lib identical.
-=======
-SpillingHash
-============
->>>>>>> FETCH_HEAD
+Grace Hash join implementation in Java, the implementation supports spilling when the memory limit is reached and utilizes bloom filter to reduce the number of data spilled from the probe side.
+The app uses TPCH Flat files to simulate the following join :
+	select count(*), sum(L_EXTENDEDPRICE) from ORDERS, LINEITEM  
+	where L_ORDERKEY = O_ORDERKEY
+ 	and O_ORDERDATE between 1995-01-02 and 1996-01-02 
+ 
+ 
