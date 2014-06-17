@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Mapreduce TPC-H Generator
 =========================
 
@@ -18,3 +19,7 @@ This uses the existing parallelism in the dbgen program without modification and
 The command generates multiple files for each map task, resulting in each table having its own subdirectory.
 
 Assumptions made are that all machines in the cluster are OS/arch/lib identical.
+=======
+SpillingHash
+============
+>>>>>>> FETCH_HEAD
